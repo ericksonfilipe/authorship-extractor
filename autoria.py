@@ -1,22 +1,21 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
-from subprocess import Popen, PIPE
-from contributors import Contributors
+from contribuidores import Contribuidores
 from controle_versao import *
 
 
 class AutoriaPorLoc:
     
     def __init__(self, classes, sistema_controle_versao):
-        self.contribuidores = Contributors()
+        self.contribuidores = Contribuidores()
         self.classes = classes
         self.sistema_controle_versao = sistema_controle_versao
         self.expertise_desenvolvedores_classe = {}
         self.contribuidores_atuais = []
 
     def calcula_autoria_por_classe(self, path):
-        saida = eval("{0}('{1}')".format(self.sistema_controle_versao, path))
+        saida = eval("{0}_linha('{1}')".format(self.sistema_controle_versao, path))
         linhas = saida.read().split('\n')
         loc = 0
         autoria = {}

@@ -1,8 +1,8 @@
-class Contributors:
+class Contribuidores:
     def __init__(self):
         self.contribuidores = {}
 
-        arquivo = open('contributors.csv')
+        arquivo = open('contribuidores.csv')
         linhas = arquivo.readlines()
 
         for linha in linhas:

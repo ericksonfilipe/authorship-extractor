@@ -2,14 +2,15 @@ import os
 import sys
 from leitor_diretorios import LeitorDiretorio
 from autoria import *
+from autoria_commit import *
 
 
-def gera_csv(mapa_expertise):
+def gera_csv(mapa_expertise, nome_arquivo):
     linhas = ''
     for (classe, contrib) in sorted(mapa_expertise.items()):
         for desenvolvedor in sorted(contrib, key=contrib.get, reverse=True):
             linhas += "{0}, {1}, {2}\n".format(classe, desenvolvedor, mapa_expertise[classe][desenvolvedor])
-    arquivo_saida = open('csv/line_contribs.csv', 'w')
+    arquivo_saida = open(nome_arquivo, 'w')
     arquivo_saida.writelines(linhas)
     arquivo_saida.close()
 
@@ -40,7 +41,11 @@ if __name__ == "__main__":
 
     autoria = AutoriaPorLoc(classes, controle_versao)
     mapa_expertise = autoria.calcula_autoria()
-    gera_csv(mapa_expertise)
+    gera_csv(mapa_expertise, 'csv/contribuicao_linha.csv')
+
+    autoria = AutoriaPorCommit(classes, controle_versao)
+    mapa_expertise = autoria.calcula_autoria()
+    gera_csv(mapa_expertise, 'csv/contribuicao_commit.csv')
 
 
 	
