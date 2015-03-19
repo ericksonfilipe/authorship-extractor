@@ -1,0 +1,1 @@
+This project is intended to extract the developers contribution to a project.
